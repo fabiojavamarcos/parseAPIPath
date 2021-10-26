@@ -30,7 +30,7 @@ public class FileDAO {
 	}
 	
 
-	public boolean insertAPI(String apiName, String general, String specific) {
+	public boolean insertAPI(String apiName, String general, String specific, String tableName) {
 		// TODO Auto-generated method stub
 		Connection con = DBUtil.getConnection(dbcon, user, pswd);
 		int count = 0;
@@ -38,8 +38,9 @@ public class FileDAO {
 		try {
 			Statement comandoSql = con.createStatement();
 			
-			String sql = "insert into \"API_specific\" values ('" + general + "' , '" + specific + "' , '" + apiName + "')";  
-
+			//String sql = "insert into \"API_specific\" values ('" + general + "' , '" + specific + "' , '" + apiName + "')";  // insert into the main table
+			//String sql = "insert into \"API_specific_backup\" values ('" + general + "' , '" + specific + "' , '" + apiName + "')";  // insert into the backup table
+			String sql = "insert into \""+ tableName + "\" values ('" + general + "' , '" + specific + "' , '" + apiName + "')";  // insert into the backup table
 			System.out.println(sql);
 			
 			count = comandoSql.executeUpdate(sql);
